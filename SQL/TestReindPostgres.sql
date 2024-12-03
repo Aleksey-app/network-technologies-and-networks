@@ -17,11 +17,11 @@ BEGIN
         INTO index_stats;
 
         -- Выводим информацию о фрагментации
-        RAISE NOTICE 'Schema: %, Table: %, Index: %, Fragmentation: %%',
-            index_record.schemaname,
-            index_record.tablename,
-            index_record.indexname,
-            index_stats->>'fragmentation';
+        RAISE NOTICE 'Schema: %, Table: %, Index: %, Fragmentation: %',
+            index_record.schemaname || ', ' || 
+            index_record.tablename || ', ' || 
+            index_record.indexname || ', ' || 
+            COALESCE(index_stats->>'fragmentation', 'N/A');
     END LOOP;
 END $$;
 
