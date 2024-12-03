@@ -7,8 +7,8 @@ BEGIN
     FOR index_record IN
         SELECT
             schemaname,
-            tablename,
-            indexname
+            relname AS tablename,
+            indexrelname AS indexname
         FROM
             pg_stat_user_indexes
     LOOP
